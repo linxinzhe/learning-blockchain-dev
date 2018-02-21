@@ -16,21 +16,21 @@ function get_head()
 
 function get_coinbase()
 {
-    $x = get_input();
-    $y = get_output();
-    $total = pack('L', 4 + strlen($x) + strlen($y));
-    return $total . $x . $y;
+    $input = get_input();
+    $output = get_output();
+    $total = pack('L', 4 + strlen($input) + strlen($output));
+    return $total . $input . $output;
 }
 
 function get_input()
 {
-    $a = pack('L', 0);
-    $b = pack('L', 0);
+    $total = pack('L', 48);
     $index = pack('L', 0);
+    $public = pack('L', 0);
+    $signature = pack('L', 0);
     $transaction = str_repeat(chr(0), 32);
 
-    $total = pack('L', 48);
-    return $total . $index . $a . $b . $transaction;
+    return $total . $index . $public . $signature . $transaction;
 }
 
 function get_output()
