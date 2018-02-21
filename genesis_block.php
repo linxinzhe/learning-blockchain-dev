@@ -35,10 +35,9 @@ function get_input()
 
 function get_output()
 {
+    $total = chr(24) . chr(0) . chr(0) . chr(0);
+    $a = chr(8) . chr(0) . chr(0) . chr(0);
     $address = substr(md5(file_get_contents("./public.txt")), 0, 8);
     $amount = chr(100) . chr(0) . chr(0) . chr(0) . chr(0) . chr(0) . chr(0) . chr(0);
-
-    $a = chr(8) . chr(0) . chr(0) . chr(0);
-    $total = chr(24) . chr(0) . chr(0) . chr(0);
     return $total . $a . $address . $amount;
 }
