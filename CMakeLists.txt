@@ -3,4 +3,4 @@ project(learning_blockchain_dev C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(learning_blockchain_dev random.c)
+add_executable(learning_blockchain_dev socket_tcp.c)
