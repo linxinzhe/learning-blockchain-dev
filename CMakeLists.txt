@@ -7,3 +7,4 @@ include_directories(include)
 link_directories(lib)
 
 add_executable(learning_blockchain_dev src/program.c)
+target_link_libraries(learning_blockchain_dev libtomcrypt.a)
