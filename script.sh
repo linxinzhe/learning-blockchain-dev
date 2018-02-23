@@ -1,6 +1,12 @@
+#!/usr/bin/env bash
+rm -rf build
 mkdir -p build
-tcc -c src/program.c -o build/program.o
+gcc -c src/program_ecc.c -o build/program_ecc.o
 
-tcc build/program.o lib/libtomcrypt.a -o build/program.elf
+gcc build/program_ecc.o lib/libtomcrypt.a -o build/program_ecc.elf
 
-./build/program.elf
+cd ./build
+./program_ecc.elf
+cd ..
+
+#openssl dgst -sha256 random.txt

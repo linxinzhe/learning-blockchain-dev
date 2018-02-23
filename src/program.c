@@ -18,15 +18,23 @@ char *get_file(char *path) {
     return contents;
 }
 
+char *get_random(){
+    FILE *file;
+    char *buffer;
+    buffer = malloc(100);
+    int flag;
+    file = fopen("/dev/urandom", "r");
+    flag = fread(buffer, 1, 100, file);
+    printf("fread:%d%c", flag, 10);
+    return buffer;
+}
+
 int main() {
     char *input;
     int length;
 
     char output[1000];
     length = 1000;
-    for (int i = 0; i < length; ++i) {
-        output[i] = 0;
-    }
 
     input = get_file("../random.txt");
 
@@ -41,6 +49,6 @@ int main() {
     printf("%02x%c", output[0], 10);
     printf("%02x%c", output[1], 10);
     printf("%02x%c", output[2], 10);
-    printf("%02x%c", output[4], 10);
+    printf("%02x%c", output[3], 10);
 
 };
