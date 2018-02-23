@@ -1,8 +1,11 @@
 #define TFM_DESC
 
-#include "tomcrypt.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <zconf.h>
+#include "tomcrypt.h"
+#include "tfm.h"
 
 char *get_file(char *path) {
     FILE *file;
@@ -16,32 +19,87 @@ char *get_file(char *path) {
 
     contents = malloc(length + 1);
     fread(contents, 1, length, file);
+
     fclose(file);
     return contents;
 }
 
-int main() {
-    char *input;
+unsigned char *get_private(unsigned int *length) {
+    prng_state random;
+    ecc_key key;
+    unsigned char *buffer;
+
+    buffer = malloc(*length = 1000);
+    ecc_make_key(&random, find_prng("sprng"), 32, &key);
+    ecc_export(buffer, length, PK_PRIVATE, &key);
+
+    return buffer;
+}
+
+unsigned char *get_public(unsigned *length, unsigned char *private) {
+    ecc_key key;
+    unsigned char *buffer;
+    ecc_import(private, *length, &key);
+    buffer = malloc(*length = 1000);
+    ecc_export(buffer, length, PK_PUBLIC, &key);
+
+    return buffer;
+}
+
+unsigned char *get_input(unsigned int *total) {
+    // A index B public C signature transaction
+
     int length;
-    length = 1000;
-    char output[length];
+    int *x;
+    unsigned char *y;
+
+    char *public, *private, *complete;
+
+    private = get_private(&length);
+    public = get_public(&length, private);
+
+    complete = malloc(*total = 48 + length);
+
+    x = malloc(4);  //A
+    *x = 48 + length;
+    memcpy(complete, x, 4);
+
+    x = malloc(4); //index
+    *x = 0;
+    memcpy(complete + 4, x, 4);
+
+    x = malloc(4);  //B
+    *x = length;
+    memcpy(complete + 8, x, 4);
+
+    y = malloc(length); //public
+    memcpy(y, public, length);
+    memcpy(complete + 12, y, length);
+
+    x = malloc(4);  //C,c=0.signature not exist
+    *x = 0;
+    memcpy(complete + 12 + length, x, 4);
+
+    y = malloc(32); //transaction
+    *y = 0;
+    memcpy(complete + 16 + length, y, 32);
+
+    return complete;
+}
+
+int main() {
+    int length;
 
     prng_state random;
     ecc_key key;
-
     ltc_mp = tfm_desc;
-
-    input = get_file("../random.txt");
 
     register_prng(&sprng_desc);
     register_hash(&sha256_desc);
 
-    char buffer[length];
+    unsigned char *input;
+    input = get_input(&length);
 
-    ecc_make_key(&random, find_prng("sprng"), 32, &key);
-    ecc_export(buffer, &length, PK_PUBLIC, &key);
-
-    printf("%d%c", length, 10);
-    printf("%s%c", buffer, 10);
+    write(1, input, length);
 
 };

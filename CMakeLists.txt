@@ -6,5 +6,5 @@ set(CFLAGS "DTFM_DESC")
 
 include_directories(include)
 link_directories(lib)
-link_libraries(tomcrypt)
+link_libraries(libtommath.a libtfm.a libtomcrypt.a)
 add_executable(learning_blockchain_dev src/program_ecc.c)
