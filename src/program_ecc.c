@@ -7,6 +7,14 @@
 #include "tomcrypt.h"
 #include "tfm.h"
 
+
+//ECC：创建地址的算法思路
+// a=open("/dev/urandom")
+// b=read(a,128)  //获得随机数
+// c=get_private(b) //私钥，往下可以
+// d=get_public(c)  //公钥
+// e=get_address(d) //地址，往上不能倒推
+
 char *get_file(char *path) {
     FILE *file;
     int length;
