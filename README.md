@@ -11,3 +11,6 @@ cmake .
 
 ### 开发环境
 推荐使用CLion和PhpStorm的IDE。当然你也可以用其他IDE只要配置号CMake的环境即可
+
+### 说明
+代码配合lecture_notes.pdf看
