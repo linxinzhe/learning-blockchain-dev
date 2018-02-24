@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-
+// BASH: nc -l 0.0.0.0 6000  #start a listener，to test this program
+// c program run with args: ip port
 int main(int count, char **arguments) {
     int s;
     struct sockaddr_in a;

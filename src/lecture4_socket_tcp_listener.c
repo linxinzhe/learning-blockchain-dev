@@ -3,7 +3,8 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <memory.h>
-
+// BASH: nc 127.0.0.1 6000
+// c program run with args: port
 int main(int count, char **arguments) {
     int s, error, length, opponent;
     struct sockaddr_in a;
@@ -40,7 +41,7 @@ int main(int count, char **arguments) {
     }
 
     while (1) {
-        memset(buffer, 0, 100);
+        memset(buffer, 0, 1000);
         length = recv(opponent, buffer, 1000, 0);
         if (length == -1 || length == 0) {
             break;
