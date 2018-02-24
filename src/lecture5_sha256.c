@@ -18,7 +18,7 @@ char *get_file(char *path) {
     return contents;
 }
 
-char *get_random(){
+char *get_random() {
     FILE *file;
     char *buffer;
     buffer = malloc(100);
@@ -32,19 +32,20 @@ char *get_random(){
 int main() {
     char *input;
     int length;
-
-    char output[1000];
     length = 1000;
+
+    char *output;
+    output = (char *) malloc(1000);
 
     input = get_file("../random.txt");
 
     register_hash(&sha256_desc);
-    hash_memory(find_hash("sha256"), (const unsigned char *) input, strlen(input), (unsigned char *) output,
+    hash_memory(find_hash("sha256"), (const unsigned char *) input, strlen(input), output,
                 (unsigned long *) &length);
 
     printf("%d%c", length, 10);
-    printf("%s%c",output,10);
-    printf("-----------%c",10);
+    printf("%s%c", output, 10);
+    printf("-----------%c", 10);
 
     printf("%02x%c", output[0], 10);
     printf("%02x%c", output[1], 10);
