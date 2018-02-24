@@ -37,7 +37,7 @@ int main() {
     char *output;
     output = (char *) malloc(1000);
 
-    input = get_file("../random.txt");
+    input = get_file("../essay.txt");
 
     register_hash(&sha256_desc);
     hash_memory(find_hash("sha256"), (const unsigned char *) input, strlen(input), output,

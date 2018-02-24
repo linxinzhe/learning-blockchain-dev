@@ -26,6 +26,7 @@ char *get_file(char *path) {
 int main() {
     char *input, *output;
     int length;
+    length = 1000;
 
     prng_state random;
     ecc_key key;
@@ -38,9 +39,8 @@ int main() {
 
     register_prng(&sprng_desc);
 
-    char *buffer;
+    unsigned char *buffer;
     buffer = malloc(1000);
-    length = 1000;
 
     ecc_make_key(&random, find_prng("sprng"), 32, &key);
     ecc_export(buffer, (unsigned long *) &length, PK_PUBLIC, &key);
