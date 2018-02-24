@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <zconf.h>
-#include "tomcrypt.h"
-#include "tfm.h"
+#include "tfm_desc.c"
 
 
 //ECC：创建地址的算法思路
