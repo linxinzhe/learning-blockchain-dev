@@ -18,7 +18,7 @@ function get_public($_b065)
 //$private = get_private();
 //var_dump($private);
 //var_dump(get_public($private[0]));
-//var_dump(substr(md5(get_public($private[0])), 0, 8));  //生成md5摘要的地址，截取为8位地址
+//var_dump(substr(md5(get_public($private[0])), 0, 8));  // md5 digest address, cut down to 8 bytes
 
 $private = get_private();
 $public = get_public($private[0]);

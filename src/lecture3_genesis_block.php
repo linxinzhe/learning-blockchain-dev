@@ -1,14 +1,14 @@
 <?php
 
 $block = get_head() . get_coinbase();
-file_put_contents('1.block', $block); // BASH: xxd 1.block  #可查看十六进制表示的创世区块
+file_put_contents('1.block', $block); // BASH: xxd 1.block  # show the raw bytes in hex format
 
 function get_head()
 {
     $current = hash('sha256', get_coinbase(), true);
-    $nonce = pack('L', 0);  //第一个区块不是挖矿出的
-    $previous = str_repeat(chr(0), 32);  //没有前置区块
-    $target = str_repeat(chr(0), 32); //第一个区块不是挖矿出的
+    $nonce = pack('L', 0);  // genesis block is not from miner
+    $previous = str_repeat(chr(0), 32);  // no predecessor
+    $target = str_repeat(chr(0), 32); // genesis block is not from miner
     $time = pack('L', time());
 
     return $current . $nonce . $previous . $target . $time;
