@@ -69,42 +69,36 @@ void get_input() {
     complete = malloc(total);
 
     x = malloc(4);  //A
+    memset(x, 0, 4);
     *x = 48 + length;
-    for (int i = 1; i < 4; ++i) {
-        x[i]=0;
-    }
     memcpy(complete, x, 4);
 
     x = malloc(4); //index
+    memset(x, 0, 4);
     *x = 0;
-    for (int i = 1; i < 4; ++i) {
-        x[i]=0;
-    }
     memcpy(complete + 4, x, 4);
 
     x = malloc(4);  //B
+    memset(x, 0, 4);
     *x = length;
     for (int i = 1; i < 4; ++i) {
-        x[i]=0;
+        x[i] = 0;
     }
     memcpy(complete + 8, x, 4);
 
     y = malloc(length); //public
+    memset(y, 0, length);
     memcpy(y, public, length);
     memcpy(complete + 12, y, length);
 
     x = malloc(4);  //C,c=0.signature not exist
+    memset(x, 0, 4);
     *x = 0;
-    for (int i = 1; i < 4; ++i) {
-        x[i]=0;
-    }
     memcpy(complete + 12 + length, x, 4);
 
     y = malloc(32); //transaction
+    memset(y, 0, 32);
     *y = 0;
-    for (int i = 1; i < 32; ++i) {
-        y[i]=0;
-    }
     memcpy(complete + 16 + length, y, 32);
 
     write(1, complete, total);
