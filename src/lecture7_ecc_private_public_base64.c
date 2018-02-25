@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <zconf.h>
 #include "tfm_desc.c"
 
 unsigned char *get_private(unsigned int *length) {
@@ -59,5 +58,6 @@ int main() {
     base64_encode(public, length_public, buffer, &length_buffer);
     printf("length_buffer:%d%c", length_buffer, 10);
     printf("%s%c", buffer, 10);
+    printf("strlen(buffer):%d%c", strlen(buffer), 10);
 
 };
