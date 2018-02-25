@@ -53,7 +53,7 @@ unsigned char *get_public(unsigned *length, unsigned char *private) {
     return buffer;
 }
 
-unsigned char *get_input() {
+void get_input() {
     // A index B public C signature transaction
 
     int length;
@@ -70,14 +70,23 @@ unsigned char *get_input() {
 
     x = malloc(4);  //A
     *x = 48 + length;
+    for (int i = 1; i < 4; ++i) {
+        x[i]=0;
+    }
     memcpy(complete, x, 4);
 
     x = malloc(4); //index
     *x = 0;
+    for (int i = 1; i < 4; ++i) {
+        x[i]=0;
+    }
     memcpy(complete + 4, x, 4);
 
     x = malloc(4);  //B
     *x = length;
+    for (int i = 1; i < 4; ++i) {
+        x[i]=0;
+    }
     memcpy(complete + 8, x, 4);
 
     y = malloc(length); //public
@@ -86,15 +95,25 @@ unsigned char *get_input() {
 
     x = malloc(4);  //C,c=0.signature not exist
     *x = 0;
+    for (int i = 1; i < 4; ++i) {
+        x[i]=0;
+    }
     memcpy(complete + 12 + length, x, 4);
 
     y = malloc(32); //transaction
     *y = 0;
+    for (int i = 1; i < 32; ++i) {
+        y[i]=0;
+    }
     memcpy(complete + 16 + length, y, 32);
 
     write(1, complete, total);
+    free(x);
+    free(y);
+    free(complete);
 
-    return complete;
+    //FIX: strange truncate pointer address
+    exit(1);
 }
 
 int main() {
@@ -105,8 +124,6 @@ int main() {
     register_prng(&sprng_desc);
     register_hash(&sha256_desc);
 
-    unsigned char *input;
-    input = get_input();
-
+    get_input();
 
 };
