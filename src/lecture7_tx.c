@@ -81,8 +81,8 @@ unsigned char *get_output(unsigned int *total) {
     y = malloc(8);  //amount
     memset(y, 0, 8);
     z = 1000;
-    memcpy(y, &z, 4);  // 64?
-    memset(y + 4, 0, 4);
+    memcpy(y, &z, 4);  //  int32 fit in y low 4 byte address
+    memset(y + 4, 0, 4); // high 4 byte set 0
     memcpy(complete + 8 + length, y, 8);
 
     return complete;
@@ -158,14 +158,14 @@ unsigned char *get_transaction(unsigned int *total) {
     *x = 12 + length_input + length_output;
     memcpy(complete, x, 4);
 
-    x = malloc(4);  //B: one input
+    x = malloc(4);  //B
     memset(x, 0, 4);
-    *x = 1;
+    *x = 1;  // one input
     memcpy(complete + 4, x, 4);
 
-    x = malloc(4);  //C: one input
+    x = malloc(4);  //C
     memset(x, 0, 4);
-    *x = 1;
+    *x = 1;    // one input
     memcpy(complete + 8, x, 4);
 
     y = malloc(length_input);
