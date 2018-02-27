@@ -13,7 +13,7 @@ function get_lines_file($file){
 	return $result;
 }
 
-// $digests=array();
+// $digests=array();  //Here for simulate raw all tx digest.txt
 // foreach (range(1,100) as $number)
 // 	$digests[]=hash('sha256',rand());
 // //var_dump($digests);
@@ -33,7 +33,7 @@ function get_Merkle_root($digests){
 		return $digests[0];
 	}
 
-	if(count($digests)%2){
+	if(count($digests)%2){  //odd then copy the last one
 		echo sprintf('case #2:%d%c',count($digests),10);
 		$item=$digests[count($digests)-1];
 		array_push($digests,$item);
@@ -42,14 +42,14 @@ function get_Merkle_root($digests){
 
 	echo sprintf('case #3: %d%c',count($digests),10);
 	for($i=0,$s=count($digests)/2;$i<$s;$i++){
-		$a=array_shift($digests);
-		$b=array_shift($digests);
-		array_push($digests,hash('sha256',$a,$b));
+		$a=array_shift($digests);  // pop from left
+		$b=array_shift($digests);	// pop from left
+		array_push($digests,hash('sha256',$a,$b));  //digest insert to right
 	}
 
 	return get_Merkle_root($digests);
 
-	// equivalent
+	// equivalent but with a new array
 	// $reduced=array();
 	// $i=0;
 	// while($i<count($digests)){
