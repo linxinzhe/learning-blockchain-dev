@@ -22,7 +22,7 @@ function get_lines_file($file){
 // $c='';
 // foreach($digests as $b)
 // 	$c .= $b.chr(10);
-// echo $c;
+// echo $c;  // php lecture8_merkle_tree.php > ../digest.txt
 
 $x=get_lines_file('../digest.txt');
 // var_dump($x);
