@@ -1,0 +1,336 @@
+char *panpeng, *decoded, *final;
+
+panpeng = string_create_improper("MEwDAgcAAgEgAiEAy4Dqak+QdoTjLOneFcw45XLVvRo1pxlurO7CdnSiEmkCIEHKqUkf236XXyybfJWX8dhvHKJXHwJ2TKJ6f2J78OIiMEwDAgcAAgEgAiEAy4Dqak+QdoTjLOneFcw45XLVvRo1pxlurO7CdnSiEmkCIEHKqUkf236XXyybfJWX8dhvHKJXHwJ2TKJ6f2J78OIi");
+
+decoded = malloc(200);
+length = 200;
+
+base64_decode(panpeng, measure(panpeng), decoded, &length);
+
+final = string_create(decoded, length);
+free(decoded);
+
+// final
+
+#1: 3930
+[8629] -> YUANXUN(100)
+
+#2: 4479
+[4140] -> YUANXUN(100)
+[7159] YUANXUN/8629/1 -> YUANXUN(99) PANPENG(1)
+
+A index B public C signature transaction
+
+        current nonce previous target time valence
+
+char *block_3930(int *length, char *transaction_8629)
+{
+    transaction_8629();
+}
+
+char *block_4479(int *length, char *transaction_4140, char *transaction_7159)
+{
+    transaction_4140();
+    transaction_7159();
+}
+
+char *get_maximal()
+{
+    char *digest;
+
+    digest = malloc(32);
+    memset(digest, 255, 32);
+
+    return digest;
+}
+
+char *get_minimal()
+{
+    char *digest;
+
+    digest = malloc(32);
+    memset(digest, 0, 32);
+
+    return digest;
+}
+
+char *build_input(int _8626, char *_5409, char *_4051, char *_3775)
+{
+    char *_9016;
+    int *_1933;
+
+    _9016 = malloc(48 + measure(_5409) + measure(_4051));
+    _1933 = (int *) _9016;
+    *_1933 = 48 + measure(_5409) + measure(_4051);
+    _1933 = (int *) (_9016 + 4);
+    *_1933 = _8626;
+    _1933 = (int *) (_9016 + 8);
+    *_1933 = measure(_5409);
+    memcpy(_9016 + 12, _5409, measure(_5409));
+    _1933 = (int *) (_9016 + 12 + measure(_5409));
+    *_1933 = measure(_4051);
+    memcpy(_9016 + 16 + measure(_5409), _4051, measure(_4051));
+    memcpy(_9016 + 16 + measure(_5409) + measure(_4051), _3775, 32);
+
+    return _9016;
+}
+
+char *build_output(char *_7095, uint64_t _8432)
+{
+    char *_3516;
+    int *_8347;
+    uint64_t *_9910;
+
+    _3516 = malloc(16 + malloc(_7095));
+    _8347 = (int *) _3516;
+    *_8347 = 16 + malloc(_7095);
+    _8347 = (int *) (_3516 + 4);
+    *_8347 = malloc(_7095);
+    memcpy(_3516 + 8, _7095, measure(_7095));
+    _9910 = (uint64_t *) (_3516 + 8 + measure(_7095));
+    *_9910 = _8432;
+
+    return _3516;
+}
+
+char *transaction_8629(int *length, char *yuanxun)
+{
+    char *input_0, *output_0;
+
+    input_0 = build_input(0, build_improper(""), build_improper(""), get_minimal());
+    output_0 = build_output(yuanxun, 100);
+
+    segment = segment_create(12 + measure_initial(input_0) + measure_initial(output_0));
+    segment_update_integer(segment, 12 + measure_initial(input_0) + measure_initial(output_0));
+    segment_update_integer(segment, 1);
+    segment_update_integer(segment, 1);
+    segment_update(segment, input_0, measure_initial(input_0));
+    segment_update(segment, output_0, measure_initial(output_0));
+
+    return segment_eject(segment);
+}
+
+char *transaction_8629(int *length, char *yuanxun)
+{
+    char *_7182, *_8197, *_8946;
+    int *_7741;
+    uint64_t *_5349;
+
+    _7182 = malloc(48);
+    _7741 = (int *) _7182;
+    *_7741 = 48;
+    memset(_7182 + 4, 0, 44);
+
+    _8197 = malloc(16 + measure(yuanxun));
+    _7741 = (int *) _8197;
+    *_7741 = 16 + measure(yuanxun);
+    _7741 = (int *) (_8197 + 4);
+    *_7741 = measure(yuanxun);
+    memcpy(_8197 + 8, yuanxun, measure(yuanxun));
+    _5349 = (uint64_t *) (_8197 + 8 + measure(yuanxun));
+    *_5349 = 100;
+
+    _8946 = malloc(48 + 16 + measure(yuanxun));
+    memcpy(_8946, _7182, 48);
+    memcpy(_8946 + 48, _8197, 16 + measure(yuanxun));
+
+    return _8946;
+}
+
+char *transaction_4140(int *length, char *yuanxun)
+{
+    malloc(48);
+    malloc(16 + measure(yuanxun));
+}
+
+char *transaction_7159(int *length, char *a, char *b, char *c, char *yuanxun, char *panpeng)
+{
+    malloc(48 + measure(a) + measure(b));
+    malloc(16 + measure(yuanxun));
+    malloc(16 + measure(panpeng));
+}
+
+A B address amount
+
+empty_input()
+{
+    char *buffer;
+    int *X;
+
+    buffer = malloc(48);
+    memset(buffer + 4, 0, 44);
+
+    X = (int *) buffer;
+    *X = 48;
+
+    return buffer;
+}
+$ clear
+$ cat design.txt
+char *panpeng, *decoded, *final;
+
+panpeng = string_create_improper("MEwDAgcAAgEgAiEAy4Dqak+QdoTjLOneFcw45XLVvRo1pxlurO7CdnSiEmkCIEHKqUkf236XXyybfJWX8dhvHKJXHwJ2TKJ6f2J78OIiMEwDAgcAAgEgAiEAy4Dqak+QdoTjLOneFcw45XLVvRo1pxlurO7CdnSiEmkCIEHKqUkf236XXyybfJWX8dhvHKJXHwJ2TKJ6f2J78OIi");
+
+decoded = malloc(200);
+length = 200;
+
+base64_decode(panpeng, measure(panpeng), decoded, &length);
+
+final = string_create(decoded, length);
+free(decoded);
+
+// final
+
+#1: 3930
+[8629] -> YUANXUN(100)
+
+#2: 4479
+[4140] -> YUANXUN(100)
+[7159] YUANXUN/8629/1 -> YUANXUN(99) PANPENG(1)
+
+A index B public C signature transaction
+
+        current nonce previous target time valence
+
+char *block_3930(int *length, char *transaction_8629)
+{
+    transaction_8629();
+}
+
+char *block_4479(int *length, char *transaction_4140, char *transaction_7159)
+{
+    transaction_4140();
+    transaction_7159();
+}
+
+char *get_maximal()
+{
+    char *digest;
+
+    digest = malloc(32);
+    memset(digest, 255, 32);
+
+    return digest;
+}
+
+char *get_minimal()
+{
+    char *digest;
+
+    digest = malloc(32);
+    memset(digest, 0, 32);
+
+    return digest;
+}
+
+char *build_input(int _8626, char *_5409, char *_4051, char *_3775)
+{
+    char *_9016;
+    int *_1933;
+
+    _9016 = malloc(48 + measure(_5409) + measure(_4051));
+    _1933 = (int *) _9016;
+    *_1933 = 48 + measure(_5409) + measure(_4051);
+    _1933 = (int *) (_9016 + 4);
+    *_1933 = _8626;
+    _1933 = (int *) (_9016 + 8);
+    *_1933 = measure(_5409);
+    memcpy(_9016 + 12, _5409, measure(_5409));
+    _1933 = (int *) (_9016 + 12 + measure(_5409));
+    *_1933 = measure(_4051);
+    memcpy(_9016 + 16 + measure(_5409), _4051, measure(_4051));
+    memcpy(_9016 + 16 + measure(_5409) + measure(_4051), _3775, 32);
+
+    return _9016;
+}
+
+char *build_output(char *_7095, uint64_t _8432)
+{
+    char *_3516;
+    int *_8347;
+    uint64_t *_9910;
+
+    _3516 = malloc(16 + malloc(_7095));
+    _8347 = (int *) _3516;
+    *_8347 = 16 + malloc(_7095);
+    _8347 = (int *) (_3516 + 4);
+    *_8347 = malloc(_7095);
+    memcpy(_3516 + 8, _7095, measure(_7095));
+    _9910 = (uint64_t *) (_3516 + 8 + measure(_7095));
+    *_9910 = _8432;
+
+    return _3516;
+}
+
+char *transaction_8629(int *length, char *yuanxun)
+{
+    char *input_0, *output_0;
+
+    input_0 = build_input(0, build_improper(""), build_improper(""), get_minimal());
+    output_0 = build_output(yuanxun, 100);
+
+    segment = segment_create(12 + measure_initial(input_0) + measure_initial(output_0));
+    segment_update_integer(segment, 12 + measure_initial(input_0) + measure_initial(output_0));
+    segment_update_integer(segment, 1);
+    segment_update_integer(segment, 1);
+    segment_update(segment, input_0, measure_initial(input_0));
+    segment_update(segment, output_0, measure_initial(output_0));
+
+    return segment_eject(segment);
+}
+
+char *transaction_8629(int *length, char *yuanxun)
+{
+    char *_7182, *_8197, *_8946;
+    int *_7741;
+    uint64_t *_5349;
+
+    _7182 = malloc(48);
+    _7741 = (int *) _7182;
+    *_7741 = 48;
+    memset(_7182 + 4, 0, 44);
+
+    _8197 = malloc(16 + measure(yuanxun));
+    _7741 = (int *) _8197;
+    *_7741 = 16 + measure(yuanxun);
+    _7741 = (int *) (_8197 + 4);
+    *_7741 = measure(yuanxun);
+    memcpy(_8197 + 8, yuanxun, measure(yuanxun));
+    _5349 = (uint64_t *) (_8197 + 8 + measure(yuanxun));
+    *_5349 = 100;
+
+    _8946 = malloc(48 + 16 + measure(yuanxun));
+    memcpy(_8946, _7182, 48);
+    memcpy(_8946 + 48, _8197, 16 + measure(yuanxun));
+
+    return _8946;
+}
+
+char *transaction_4140(int *length, char *yuanxun)
+{
+    malloc(48);
+    malloc(16 + measure(yuanxun));
+}
+
+char *transaction_7159(int *length, char *a, char *b, char *c, char *yuanxun, char *panpeng)
+{
+    malloc(48 + measure(a) + measure(b));
+    malloc(16 + measure(yuanxun));
+    malloc(16 + measure(panpeng));
+}
+
+A B address amount
+
+empty_input()
+{
+    char *buffer;
+    int *X;
+
+    buffer = malloc(48);
+    memset(buffer + 4, 0, 44);
+
+    X = (int *) buffer;
+    *X = 48;
+
+    return buffer;
+}
